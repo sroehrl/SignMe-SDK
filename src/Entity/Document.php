@@ -127,4 +127,14 @@ class Document
         return $signatory;
     }
 
+    public function update(): static
+    {
+        $this->client->put('documents/' . $this->getSlug(), [
+            'finalInstructions' => $this->finalInstructions,
+            'name' => $this->name,
+            'webhookUrl' => $this->webhookUrl
+        ]);
+        return $this;
+    }
+
 }

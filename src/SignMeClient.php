@@ -8,7 +8,6 @@ use Retech\Celest\SignMe\Exceptions\ConnectionException;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -196,15 +195,15 @@ class SignMeClient
             ]);
             $code = $response->getStatusCode();
             if($code !== 200){
-                var_dump($response->getContent());
+                throw new ConnectionException($response->getContent());
             }
             return new Document($response->toArray(), $this);
         } catch (TransportExceptionInterface $e) {
             $previousException = $e->getPrevious();
             $fullErrorMessage = $previousException->getMessage();
-            var_dump($fullErrorMessage);
             throw new ConnectionException($e->getMessage());
         }
 
     }
+
 }
