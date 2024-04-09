@@ -1,0 +1,20 @@
+{
+  "name": "retech/sign-me",
+  "description": "Celest Sign me SDK",
+  "license": "MIT",
+  "homepage": "https://sign.celest.services",
+  "autoload": {
+    "psr-4": {
+      "Retech\\Celest\\SignMe\\": "./src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Neoan3\\Apps\\Template\\Tests\\": "./tests/"
+    }
+  },
+  "require": {
+    "php": "^8.1",
+    "symfony/http-client": "^7.0"
+  }
+}
