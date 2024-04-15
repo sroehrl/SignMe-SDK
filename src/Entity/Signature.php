@@ -25,7 +25,7 @@ class Signature
         $this->signerName = $signatureData['signerName'] ?? null;
         $this->signerEmail = $signatureData['signerEmail'] ?? null;
         $this->ip = $signatureData['ip'] ?? null;
-        $this->signedAt = $signatureData['signedAt']['value'] ? \DateTimeImmutable::createFromFormat('Y-m-d H:i:s tz', $signatureData['signedAt']['value'] . ' ' . $signatureData['signedAt']['datetime']['timezone']) : null;
+        $this->signedAt = $signatureData['signedAt']['value'] ? \DateTimeImmutable::createFromFormat('Y-m-d H:i:s T', $signatureData['signedAt']['value'] . ' ' . $signatureData['signedAt']['dateTime']['timezone']) : null;
         $this->hasSigned = !!$this->signedAt;
     }
 
