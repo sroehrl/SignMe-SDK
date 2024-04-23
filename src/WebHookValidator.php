@@ -50,10 +50,10 @@ class WebHookValidator
     public function validate(): static|bool
     {
         $headers = getallheaders();
-        if(!isset($headers['X-SignMe-HMAC-SHA256'])){
+        if(!isset($headers['X-Signme-Hmac-Sha256'])){
             return $this->throw ? throw new WebhookValidationException('Missing signature') : false;
         }
-        $hmac = $headers['X-SignMe-HMAC-SHA256'];
+        $hmac = $headers['X-Signme-Hmac-Sha256'];
         $payload = stripslashes(file_get_contents('php://input'));
         $valid =  hash_equals(hash_hmac('sha256', $payload, $this->secret), $hmac);
         if(!$valid){
